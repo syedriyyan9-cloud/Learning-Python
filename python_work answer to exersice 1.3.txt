@@ -1,0 +1,13 @@
+ALWAYS BUILD APPS BASED ON WHAT YOU NEED:
+
+- YouTube ad blocker app
+
+- an AI agent to automatically create CVs and check them from a ATS.
+
+- An AI agent that automatically completes university assignments and stuff.
+
+- an app that helps me with keeping track of how much calories i have burnt by taking 
+   in the amount of time i have done exercise and how much would i lose weight. it would also 
+   help in tell me what is the best way to do it, like exercises, diet, sleep etc.
+
+- an app that fetches the best time of completion from the internet about nfs most wanted races.
