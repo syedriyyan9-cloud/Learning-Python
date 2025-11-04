@@ -1,4 +1,4 @@
-# Date: 2 november 2025
+# Date: 3 november 2025
 # Name: Riyyan
 
 # 5-10. Checking Usernames: Do the following to create a program that simulates
