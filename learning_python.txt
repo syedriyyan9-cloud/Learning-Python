@@ -1,0 +1,7 @@
+In Python you can take inputs from the user
+In Python you can use conditional statements to dictate the flow of your program
+In Python you can use loops to repeat a block of code as many times as you want
+In Python you can you can store multiple values in a list, dict, tupels or sets
+In Python you can you can model real world objects using classes and objects
+In Python you can create functions to use a block of code with just using labels
+In Python you can create modules containing function or classes
