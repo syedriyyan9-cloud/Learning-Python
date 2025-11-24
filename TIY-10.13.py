@@ -40,5 +40,7 @@ def greet_user():
             get_new_username()
         else:
             print(f"Welcome back, {username}!")
+    else:
+        get_new_username()
 
 greet_user()
