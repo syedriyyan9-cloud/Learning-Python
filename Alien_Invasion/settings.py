@@ -5,4 +5,4 @@ class Settings:
         # initializes the settings for game
         self.width = 800
         self.height = 800
-        self.bg_color = (120,120,120)
+        self.bg_color = (255,255,255)

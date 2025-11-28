@@ -2,6 +2,8 @@ import sys
 
 import pygame
 
+import ship
+
 from settings import Settings
 
 class Alien_Invasion:
@@ -15,6 +17,7 @@ class Alien_Invasion:
         self.screen = pygame.display.set_mode((self.setting.width,
                                                self.setting.height))
         pygame.display.set_caption("Alien Invasion")
+        self.ship = ship.Ship(self)
 
     def run_game(self):
         '''method to keep the game running and update changes'''
@@ -27,6 +30,7 @@ class Alien_Invasion:
             #display the most recent screen
             pygame.display.flip()
             self.screen.fill(self.setting.bg_color) # fill screen with bg color
+            self.ship.blitme()
 
 if __name__ == '__main__':
     ai = Alien_Invasion()
