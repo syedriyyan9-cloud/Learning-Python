@@ -14,23 +14,29 @@ class Alien_Invasion:
         pygame.init()
         self.setting = Settings()
         #create a game window
-        self.screen = pygame.display.set_mode((self.setting.width,
-                                               self.setting.height))
+        self.screen = pygame.display.set_mode(
+            (self.setting.width,self.setting.height))
         pygame.display.set_caption("Alien Invasion")
         self.ship = ship.Ship(self)
 
     def run_game(self):
         '''method to keep the game running and update changes'''
         while True:
-            # listen for events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self._update_screen()        
 
-            #display the most recent screen
-            pygame.display.flip()
-            self.screen.fill(self.setting.bg_color) # fill screen with bg color
-            self.ship.blitme()
+    def _check_events(self):
+        '''a helper function to check for events'''
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        '''a helper function to display the most recent screen'''
+        pygame.display.flip()
+        self.screen.fill(self.setting.bg_color) # fill screen with bg color
+        self.ship.blitme()
+
 
 if __name__ == '__main__':
     ai = Alien_Invasion()
