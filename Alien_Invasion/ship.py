@@ -16,6 +16,15 @@ class Ship:
         self.rect = self.scaled_image.get_rect()
         # load ship at bottom
         self.rect.midbottom = self.screen_rect.midbottom
+        self.moving_right = False
+        self.moving_left = False
+
+    def update_motion(self):
+        '''update the position of the ship'''
+        if self.moving_right:
+            self.rect.x += 1
+        if self.moving_left:
+            self.rect.x -= 1
 
     def blitme(self):
         '''Draw the ship at current position'''

@@ -24,12 +24,25 @@ class Alien_Invasion:
         while True:
             self._check_events()
             self._update_screen()        
+            self.ship.update_motion()
 
     def _check_events(self):
         '''a helper function to check for events'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False    
+                if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
 
     def _update_screen(self):
         '''a helper function to display the most recent screen'''
