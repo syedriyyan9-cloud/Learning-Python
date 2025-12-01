@@ -7,6 +7,7 @@ class Ship:
         '''initialize position and create image'''
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
+        self.settings = ai_game.setting
         # load image and scaling it
         self.image_width = 100
         self.image_height = 150
@@ -18,13 +19,16 @@ class Ship:
         self.rect.midbottom = self.screen_rect.midbottom
         self.moving_right = False
         self.moving_left = False
+        # speed of the ship
+        self.x = float(self.rect.x)
 
     def update_motion(self):
         '''update the position of the ship'''
-        if self.moving_right:
-            self.rect.x += 1
-        if self.moving_left:
-            self.rect.x -= 1
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.x += self.settings.ship_speed
+        if self.moving_left and self.rect.left > 0:
+            self.x -= self.settings.ship_speed
+        self.rect.x = self.x
 
     def blitme(self):
         '''Draw the ship at current position'''
