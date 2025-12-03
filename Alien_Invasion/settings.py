@@ -7,4 +7,4 @@ class Settings:
         self.height = 800
         self.bg_color = (255,255,255)
         # speed of the ship
-        self.ship_speed = 1.5
+        self.ship_speed = 3

@@ -14,8 +14,9 @@ class Alien_Invasion:
         pygame.init()
         self.setting = Settings()
         #create a game window
-        self.screen = pygame.display.set_mode(
-            (self.setting.width,self.setting.height))
+        self.screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+        self.setting.screen_width = self.screen.get_rect().width
+        self.setting.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
         self.ship = ship.Ship(self)
 
@@ -30,19 +31,28 @@ class Alien_Invasion:
         '''a helper function to check for events'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                sys.exit() 
             
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    self.ship.moving_right = True
-                if event.key == pygame.K_LEFT:
-                    self.ship.moving_left = True
+            self._check_keydown_events(event)
+            self._check_keyup_events(event)
 
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    self.ship.moving_right = False    
-                if event.key == pygame.K_LEFT:
-                    self.ship.moving_left = False
+    def _check_keydown_events(self, event):
+        '''a helper method to check for key presses'''
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = True
+            if event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+            if event.key == pygame.K_q:
+                    sys.exit()
+    
+    def _check_keyup_events(self,event):
+        '''a helper method to check for key releases'''
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT:
+                self.ship.moving_right = False    
+            if event.key == pygame.K_LEFT:
+                self.ship.moving_left = False
 
     def _update_screen(self):
         '''a helper function to display the most recent screen'''
