@@ -8,6 +8,8 @@ from settings import Settings
 
 import bullets
 
+import alien
+
 class Alien_Invasion:
     '''a class to represent game elements'''
 
@@ -22,15 +24,17 @@ class Alien_Invasion:
         pygame.display.set_caption("Alien Invasion")
         self.ship = ship.Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        self._create_fleet()
 
     def run_game(self):
         '''method to keep the game running and update changes'''
         while True:
             self._check_events()
-            self._update_screen()        
             self.ship.update_motion()
             self.bullets.update()
             self._delete_fired_bullets()
+            self._update_screen()        
 
     def _delete_fired_bullets(self):
         '''a method to delete fired bullets'''
@@ -41,8 +45,9 @@ class Alien_Invasion:
 
     def _fire_bullets(self):
         '''a method to create and fire bullets'''
-        new_bullet = bullets.Bullets(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.setting.bullets_allowed:
+            new_bullet = bullets.Bullets(self)
+            self.bullets.add(new_bullet)
 
     def _check_events(self):
         '''a helper function to check for events'''
@@ -73,14 +78,19 @@ class Alien_Invasion:
             if event.key == pygame.K_LEFT:
                 self.ship.moving_left = False
 
+    def _create_fleet(self):
+        '''a method to create aliens'''
+        Alien = alien.Alien(self)
+        self.aliens.add(Alien)
+
     def _update_screen(self):
         '''a helper function to display the most recent screen'''
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.screen)
         pygame.display.flip()
         self.screen.fill(self.setting.bg_color) # fill screen with bg color
         self.ship.blitme()
-
 
 if __name__ == '__main__':
     ai = Alien_Invasion()
