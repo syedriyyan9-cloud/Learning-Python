@@ -17,3 +17,7 @@ class Settings:
 
         self.screen_width = 0
         self.screen_height = 0
+
+        self.alien_speed = 1.0
+        self.fleet_drop_speed = 10
+        self.fleet_direction = 1

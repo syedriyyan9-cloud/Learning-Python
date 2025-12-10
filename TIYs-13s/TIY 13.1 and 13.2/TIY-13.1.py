@@ -22,8 +22,8 @@ class Game:
         self.screen_height = self.screen_rect.height
         self.stars = pygame.sprite.Group()
 
-    def _stars(self):
-        '''display grid of stars'''
+    def _calculate_stars(self):
+        '''calculate number of stars in rows and columns'''
         star = stars(self)
         star_width = star.rect.width
         star_height = star.rect.height
@@ -43,7 +43,7 @@ class Game:
                 self._grid_of_stars(number, rows)
 
     def _grid_of_stars(self,number,rows):
-        '''add sprites to sprite group'''
+        '''create grid of stars'''
         star = stars(self)
         star_width = star.rect.width
         star_height = star.rect.height
@@ -54,9 +54,8 @@ class Game:
         self.stars.add(star)        
 
     def _update_screen(self):
-        '''display screen'''
-        # for star in self.stars.sprites():
-        self._stars()
+        '''update screen'''
+        self._calculate_stars()
         self.stars.draw(self.screen)
         pygame.display.flip()
 

@@ -32,6 +32,8 @@ class Alien_Invasion:
         while True:
             self._check_events()
             self.ship.update_motion()
+            self._check_fleet_direction()
+            self._update_alien()
             self.bullets.update()
             self._delete_fired_bullets()
             self._update_screen()        
@@ -108,6 +110,23 @@ class Alien_Invasion:
         pygame.display.flip()
         self.screen.fill(self.setting.bg_color) # fill screen with bg color
         self.ship.blitme()
+    
+    def _update_alien(self):
+        '''update all aliens position in the fleet'''
+        self.aliens.update()
+
+    def _check_fleet_direction(self):
+        '''check each alien direction'''
+        for alien in self.aliens.sprites():
+            if alien.check_direction():
+                self._update_fleet_direction()
+                break
+
+    def _update_fleet_direction(self):
+        '''update fleets direction in both x and y directions'''
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.setting.fleet_drop_speed
+        self.setting.fleet_direction *= -1
 
 if __name__ == '__main__':
     ai = Alien_Invasion()
