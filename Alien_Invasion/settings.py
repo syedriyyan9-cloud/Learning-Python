@@ -9,7 +9,7 @@ class Settings:
         # speed of the ship
         self.ship_speed = 3
 
-        self.bullet_speed = 3
+        self.bullet_speed = 6
         self.bullet_width = 5
         self.bullet_height = 5
         self.bullet_color = (0,0,0)
