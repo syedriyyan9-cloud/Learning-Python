@@ -33,3 +33,8 @@ class Ship:
     def blitme(self):
         '''Draw the ship at current position'''
         self.screen.blit(self.scaled_image, self.rect)
+
+    def center_ship(self):
+        '''recenter the ship'''
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)

@@ -8,6 +8,7 @@ class Settings:
         self.bg_color = (255,255,255)
         # speed of the ship
         self.ship_speed = 3
+        self.ship_limit = 3
 
         self.bullet_speed = 6
         self.bullet_width = 5
@@ -21,3 +22,4 @@ class Settings:
         self.alien_speed = 1.0
         self.fleet_drop_speed = 10
         self.fleet_direction = 1
+
