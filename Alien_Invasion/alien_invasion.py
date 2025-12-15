@@ -36,10 +36,13 @@ class Alien_Invasion:
         '''method to keep the game running and update changes'''
         while True:
             self._check_events()
-            self.ship.update_motion()
-            self._check_fleet_direction()
-            self._update_alien()
-            self.bullets.update()
+            
+            if self.stats.game_active:
+                self.ship.update_motion()
+                self._check_fleet_direction()
+                self._update_alien()
+                self.bullets.update()
+            
             self._delete_fired_bullets()
             self._update_screen()        
 
@@ -145,12 +148,16 @@ class Alien_Invasion:
 
     def _ship_hit(self):
         '''respond to ship being hit'''
-        self.stats.ships_left -= 1
-        self.bullets.empty()
-        self.aliens.empty()
-        self._create_fleet()
-        self.ship.center_ship()
-        sleep(0.5)
+        if self.stats.ships_left > 0:
+            self.stats.ships_left -= 1
+            self.bullets.empty()
+            self.aliens.empty()
+            self._create_fleet()
+            self.ship.center_ship()
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
+        
 
 if __name__ == '__main__':
     ai = Alien_Invasion()
