@@ -17,3 +17,5 @@ class Settings:
 
         self.enemy_direction = 1
         self.enemy_speed = 0.3
+
+        self.player_lives = 3

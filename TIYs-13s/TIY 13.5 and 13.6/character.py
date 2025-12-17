@@ -37,3 +37,8 @@ class Character:
     def built(self):
         '''put the character onto the screen'''
         self.screen.blit(self.image,self.rect)
+
+    def center_ship(self):
+        '''recenter the ship'''
+        self.rect.midleft = self.screen_rect.midleft
+        self.x = float(self.rect.x)

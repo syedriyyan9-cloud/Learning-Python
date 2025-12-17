@@ -20,6 +20,10 @@ from bullets import Bullet
 
 from enemy import Enemy
 
+from gamestats import GameStats
+
+from time import sleep
+
 class SidewaysShooter:
     '''a class to represent sideway shooter game'''
 
@@ -27,11 +31,12 @@ class SidewaysShooter:
         '''create attributes of game'''
         pygame.init()
         self.screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+        self.setting = Settings()
+        self.character = Character(self)
+        self.stats = GameStats(self)
         self.screen_rect = self.screen.get_rect()
         self.screen_width = self.screen_rect.width
         self.screen_height = self.screen_rect.height
-        self.setting = Settings()
-        self.character = Character(self)
         self.bg_color = self.setting.bg_color_white
         self.bullet = pygame.sprite.Group()
         self.enemy = pygame.sprite.Group()
@@ -70,6 +75,11 @@ class SidewaysShooter:
                 sys.exit()
             if event.key == pygame.K_SPACE:
                 self._fire_bullet()
+            # if event.key == pygame.K_p:
+            #     self.character.center_ship()
+            #     self.stats.reset_game()
+            #     self.stats.active = True
+
 
     def _check_up_events(self, event):
         '''method to check for key releases'''
@@ -135,15 +145,30 @@ class SidewaysShooter:
     def _update_enemies(self):
         '''update the position of enemies'''
         self.enemy.update()
+        if pygame.sprite.spritecollideany(self.character,self.enemy,):
+            self.setting.player_lives -= 1
+            self._ship_hit()
+
+    def _ship_hit(self):
+        '''next step when ship is hit'''
+        if self.stats.setting.player_lives > 0:
+            self.character.center_ship()
+            self.bullet.empty()
+            self.enemy.empty()
+            self._create_enemy_fleet()
+            sleep(0.5)
+        else:
+            self.stats.active = False
 
     def run(self):
         '''method to keep the game running'''
         while True:
-            self._update_screen()
-            self.bullet.update()
             self.check_events()
-            self._update_enemies()
-            self.character.move_position()
+            if self.stats.active:
+                self.bullet.update()
+                self._update_enemies()
+                self.character.move_position()
+            self._update_screen()
 
 if __name__ == "__main__":
     '''only run game when file is executed directly'''
