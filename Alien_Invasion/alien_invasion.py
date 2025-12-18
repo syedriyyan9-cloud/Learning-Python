@@ -14,6 +14,8 @@ from time import sleep
 
 from gamestats import GameStats
 
+from button import Button
+
 class Alien_Invasion:
     '''a class to represent game elements'''
 
@@ -24,6 +26,7 @@ class Alien_Invasion:
         #create a game window
         self.screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
         self.stats = GameStats(self)
+        self.button = Button(self, "Play")
         self.setting.screen_width = self.screen.get_rect().width
         self.setting.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
@@ -123,9 +126,11 @@ class Alien_Invasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+        self.ship.blitme()
+        if not self.stats.game_active:
+            self.button.draw()
         pygame.display.flip()
         self.screen.fill(self.setting.bg_color) # fill screen with bg color
-        self.ship.blitme()
     
     def _update_alien(self):
         '''update all aliens position in the fleet'''
