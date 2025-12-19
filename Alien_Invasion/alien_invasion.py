@@ -70,12 +70,32 @@ class Alien_Invasion:
             new_bullet = bullets.Bullets(self)
             self.bullets.add(new_bullet)
 
+    # TIY 14.1 solution
+    def _check_play_button(self, pos):
+        '''Start a new game when the player clicks Play'''
+        button_clicked = self.button.rect.collidepoint(pos)
+        if button_clicked and not self.stats.game_active:
+            self._start_game()
+
+    def _start_game(self):
+        '''start game by pressing button (P) '''
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        self.aliens.empty()
+        self.bullets.empty()
+        self._create_fleet()
+        self.ship.center_ship()
+        pygame.mouse.set_visible(False)
+
     def _check_events(self):
         '''a helper function to check for events'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit() 
-            
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+                            
             self._check_keydown_events(event)
             self._check_keyup_events(event)
 
@@ -90,6 +110,8 @@ class Alien_Invasion:
                 sys.exit()
             if event.key == pygame.K_SPACE:
                 self._fire_bullets() 
+            if event.key == pygame.K_p:
+                self._start_game()
 
     def _check_keyup_events(self,event):
         '''a helper method to check for key releases'''
@@ -162,6 +184,7 @@ class Alien_Invasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
         
 
 if __name__ == '__main__':
