@@ -22,6 +22,8 @@ from character import Character
 
 from bullets import Bullet
 
+from button import Button
+
 class Game:
     '''a class to represent the game'''
 
@@ -33,6 +35,10 @@ class Game:
         self.rectangle = Rectangle(self)
         self.character = Character(self)
         self.bullet = pygame.sprite.Group()
+        self.button = Button(self,'Play')
+        self.game_active = False
+        self.display_button = True
+        self.missed_bullets = 0
 
     def update_screen(self):
         '''update screen for events'''
@@ -43,6 +49,8 @@ class Game:
             bullet.move_bullet()
             bullet.draw()
         self._delete_fired_bullets()
+        if self.display_button:
+            self.button.draw()
         pygame.display.flip()
 
     def check_events(self):
@@ -50,6 +58,7 @@ class Game:
         for event in pygame.event.get():
             self._check_up_events(event)
             self._check_down_events(event)
+            self._check_mouse_down(event)
     
     def _check_down_events(self, event):
         '''check for key presses'''
@@ -64,8 +73,24 @@ class Game:
                 self.character.move_right = True
             if event.key == pygame.K_q:
                 sys.exit()
-            if event.key == pygame.K_SPACE:
-                self._fire_bullet()
+            if self.game_active:
+                if event.key == pygame.K_SPACE:
+                    self._fire_bullet()
+
+    def _check_mouse_down(self, event):
+        '''check mouse presses'''
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = pygame.mouse.get_pos()
+            if self._check_mouse_pos(mouse_pos):
+                self.game_active = True
+                self.display_button = False
+                self.character._center_character()
+            
+    def _check_mouse_pos(self, pos):
+        '''check the position of mouse'''
+        button_pos = self.button.rect.collidepoint(pos)
+        if button_pos:
+            return True
 
     def _fire_bullet(self):
         '''fire bullets'''
@@ -77,7 +102,21 @@ class Game:
         for bullet in self.bullet.copy():
             if bullet.rect.right > self.screen_rect.right:
                 self.bullet.remove(bullet)
+                self.missed_bullets += 1
+            self._check_collision()
+            self._check_missed_bullets()
 
+    def _check_collision(self):
+        '''check for collisions'''
+        collision = pygame.sprite.spritecollideany(self.rectangle,self.bullet)
+
+    def _check_missed_bullets(self):
+        '''check for missed bullets'''
+        if self.missed_bullets >= 3:
+            self.game_active = False
+            self.display_button = True
+            self.missed_bullets = 0
+     
     def _check_up_events(self, event):
         '''check for key releases'''
         if event.type == pygame.KEYUP:
@@ -90,13 +129,26 @@ class Game:
             if event.key == pygame.K_d:
                 self.character.move_right = False
 
+    def hide_mouse(self):
+        '''hide mouse'''
+        pygame.mouse.set_visible(False)
+    
+    def show_mouse(self):
+        '''show mouse'''
+        pygame.mouse.set_visible(True)
+
     def run(self):
         '''keep the game window open indefinitly'''
         while True:
+            if self.game_active:
+                self.character.move_player()
+                self.rectangle.move_rectangle()
+                self.hide_mouse()
+            else:
+                self.show_mouse()
+                
             self.update_screen()
             self.check_events()
-            self.character.move_player()
-            self.rectangle.move_rectangle()
             
 if __name__ == "__main__":
     game = Game()

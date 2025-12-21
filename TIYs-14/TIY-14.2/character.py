@@ -32,6 +32,10 @@ class Character:
         self.rect.x = self.x
         self.rect.y = self.y
     
+    def _center_character(self):
+        '''align the player to center of screen'''
+        self.rect.midleft = self.screen_rect.midleft
+
     def draw(self):
         '''draw the player onto the screen'''
         self.screen.blit(self.image, self.rect)

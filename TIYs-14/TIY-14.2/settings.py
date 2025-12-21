@@ -16,3 +16,9 @@ class Setting:
         self.bullet_height = 6
         self.bullet_speed = 4
         self.bullet_color = (0,0,0)
+
+        self.button_color_white = (255,255,255)
+        self.button_color_black = (0,0,0)
+        self.button_color_red = (255,0,0)
+        self.button_color_green = (0,255,0)
+        self.button_color_blue = (0,0,255)
