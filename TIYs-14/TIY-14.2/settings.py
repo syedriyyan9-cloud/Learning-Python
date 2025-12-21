@@ -5,7 +5,7 @@ class Setting:
         '''create game settings'''
         self.bg_color_white = (255,255,255)
 
-        self.rectangle_speed = 5
+        self.rectangle_speed = 1
         self.rectangle_width = 75
         self.rectangle_height = 100
         self.direction = -1

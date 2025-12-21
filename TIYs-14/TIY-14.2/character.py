@@ -34,7 +34,9 @@ class Character:
     
     def _center_character(self):
         '''align the player to center of screen'''
-        self.rect.midleft = self.screen_rect.midleft
+        self.rect.midleft = self.screen_rect.midleft 
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
     def draw(self):
         '''draw the player onto the screen'''

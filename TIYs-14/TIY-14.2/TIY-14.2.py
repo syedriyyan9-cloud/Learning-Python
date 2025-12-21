@@ -108,7 +108,9 @@ class Game:
 
     def _check_collision(self):
         '''check for collisions'''
-        collision = pygame.sprite.spritecollideany(self.rectangle,self.bullet)
+        collision = pygame.sprite.spritecollide(self.rectangle,self.bullet,0)
+        if collision and self.missed_bullets >= 0:
+            self.missed_bullets -= 1
 
     def _check_missed_bullets(self):
         '''check for missed bullets'''
@@ -116,6 +118,7 @@ class Game:
             self.game_active = False
             self.display_button = True
             self.missed_bullets = 0
+            self.character._center_character()
      
     def _check_up_events(self, event):
         '''check for key releases'''
