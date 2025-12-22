@@ -10,6 +10,10 @@
 # the player misses the target three times, end the game and make the Play but-
 # ton reappear. Let the player restart the game with this Play button.
 
+# 14-3. Challenging Target Practice: Start with your work from Exercise 14-2
+# (page 285). Make the target move faster as the game progresses, and restart
+# the target at the original speed when the player clicks Play.
+
 import sys
 
 import pygame
@@ -85,6 +89,7 @@ class Game:
                 self.game_active = True
                 self.display_button = False
                 self.character._center_character()
+                self.setting.default_setting()
             
     def _check_mouse_pos(self, pos):
         '''check the position of mouse'''
@@ -109,8 +114,17 @@ class Game:
     def _check_collision(self):
         '''check for collisions'''
         collision = pygame.sprite.spritecollide(self.rectangle,self.bullet,0)
-        if collision and self.missed_bullets >= 0:
+        bullet_hit = False
+        if collision and self.missed_bullets > 0:
             self.missed_bullets -= 1
+            self.increase_speed_when_hit(bullet_hit)
+
+    def increase_speed_when_hit(self, bullet):
+        '''increase game speed only when bullet hits the rectangle'''
+        bullet = True
+        if bullet:
+            self.setting.increase_game_speed()
+            bullet = False
 
     def _check_missed_bullets(self):
         '''check for missed bullets'''

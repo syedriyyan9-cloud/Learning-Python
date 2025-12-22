@@ -22,3 +22,19 @@ class Setting:
         self.button_color_red = (255,0,0)
         self.button_color_green = (0,255,0)
         self.button_color_blue = (0,0,255)
+
+        self.speedup_scale = 1.1
+
+    def increase_game_speed(self):
+        '''increase the game elements speed'''
+        self.bullet_speed *= self.speedup_scale
+        self.character_speed *= self.speedup_scale
+        self.rectangle_speed *= self.speedup_scale
+        self.direction *= -1
+    
+    def default_setting(self):
+        '''restore game settings to default'''
+        self.bullet_speed = 4
+        self.character_speed = 3
+        self.rectangle_speed = 1
+        self.direction = -1

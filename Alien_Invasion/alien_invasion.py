@@ -63,6 +63,7 @@ class Alien_Invasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
+            self.setting.increase_speed()
 
     def _fire_bullets(self):
         '''a method to create and fire bullets'''
@@ -76,6 +77,7 @@ class Alien_Invasion:
         button_clicked = self.button.rect.collidepoint(pos)
         if button_clicked and not self.stats.game_active:
             self._start_game()
+            self.setting.initialize_dynamic_setting()
 
     def _start_game(self):
         '''start game by pressing button (P) '''
