@@ -7,7 +7,9 @@ class GameStats:
         self.setting = game.setting
         self.reset_stats()
         self.game_active = False
+        self.score = 0
 
     def reset_stats(self):
         '''reset to default values'''
         self.ships_left = self.setting.ship_limit
+        self.score = 0
