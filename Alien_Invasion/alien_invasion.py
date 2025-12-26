@@ -95,6 +95,7 @@ class Alien_Invasion:
         self.stats.game_active = True
         self.sb.prep_score()
         self.sb.prep_level()
+        self.sb.prep_ship()
         self.aliens.empty()
         self.bullets.empty()
         self._create_fleet()
@@ -192,6 +193,7 @@ class Alien_Invasion:
         '''respond to ship being hit'''
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
+            self.sb.prep_ship()
             self.bullets.empty()
             self.aliens.empty()
             self._create_fleet()
@@ -201,7 +203,6 @@ class Alien_Invasion:
             self.stats.game_active = False
             pygame.mouse.set_visible(True)
         
-
 if __name__ == '__main__':
     ai = Alien_Invasion()
     ai.run_game()
