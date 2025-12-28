@@ -42,13 +42,11 @@ class Alien_Invasion:
         '''method to keep the game running and update changes'''
         while True:
             self._check_events()
-            
             if self.stats.game_active:
                 self.ship.update_motion()
                 self._check_fleet_direction()
                 self._update_alien()
                 self.bullets.update()
-            
             self._delete_fired_bullets()
             self._update_screen()        
 
@@ -69,11 +67,15 @@ class Alien_Invasion:
             self.sb.prep_score()
             self.sb.check_high_score()
         if not self.aliens:
-            self.bullets.empty()
-            self._create_fleet()
-            self.setting.increase_speed()
-            self.stats.level += 1
-            self.sb.prep_level()
+            self.start_new_level()
+
+    def start_new_level(self):
+        '''start new level'''
+        self.bullets.empty()
+        self._create_fleet()
+        self.setting.increase_speed()
+        self.stats.level += 1
+        self.sb.prep_level()
 
     def _fire_bullets(self):
         '''a method to create and fire bullets'''
@@ -106,6 +108,8 @@ class Alien_Invasion:
         '''a helper function to check for events'''
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                # TIY-14.5
+                self._save_highscore()
                 sys.exit() 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
@@ -113,6 +117,17 @@ class Alien_Invasion:
                             
             self._check_keydown_events(event)
             self._check_keyup_events(event)
+
+    def _save_highscore(self):
+        '''save high score to a txt file'''
+        with open('highscore.txt','w') as file:
+            file.write(str(self.stats.high_score))
+    
+    def _retrive_highscore(self):
+        '''reetrive highscore from the file'''
+        with open('highscore.txt','r') as file:
+            line = file.readline()
+            return int(line)
 
     def _check_keydown_events(self, event):
         '''a helper method to check for key presses'''
@@ -122,6 +137,7 @@ class Alien_Invasion:
             if event.key == pygame.K_LEFT:
                 self.ship.moving_left = True
             if event.key == pygame.K_q:
+                self._save_highscore()
                 sys.exit()
             if event.key == pygame.K_SPACE:
                 self._fire_bullets() 

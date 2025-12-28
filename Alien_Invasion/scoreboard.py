@@ -18,10 +18,7 @@ class ScoreBoard:
         self.text_color = (30,30,30)
         self.bg_color = (255,255,255)
         self.font = pygame.font.SysFont(None, 48)
-        self.prep_score()
-        self.prep_highscore()
-        self.prep_level()
-        self.prep_ship()
+        self.prep_image()
 
     def prep_score(self):
         '''turn the score into an image'''
@@ -73,3 +70,10 @@ class ScoreBoard:
             ship.rect.x = 10 + ship_number * ship.rect.width
             ship.rect.y = 10
             self.ship.add(ship)
+
+    def prep_image(self):
+        '''prep all images for scoreboard'''
+        self.prep_score()
+        self.prep_highscore()
+        self.prep_level()
+        self.prep_ship()
