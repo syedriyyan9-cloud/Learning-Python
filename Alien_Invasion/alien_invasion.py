@@ -18,6 +18,8 @@ from button import Button
 
 from scoreboard import ScoreBoard
 
+from pygame import mixer #importing mixer to load and play sound effects
+
 class Alien_Invasion:
     '''a class to represent game elements'''
 
@@ -37,6 +39,7 @@ class Alien_Invasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
+        self.sound = mixer.Sound
 
     def run_game(self):
         '''method to keep the game running and update changes'''
@@ -64,10 +67,16 @@ class Alien_Invasion:
         if collisions:
             for alien in collisions.values():
                 self.stats.score += self.setting.alien_points * len(alien)
+            self._create_explosion_sound() #TIY 14.7
             self.sb.prep_score()
             self.sb.check_high_score()
         if not self.aliens:
             self.start_new_level()
+
+    def _create_explosion_sound(self):
+        '''creates an explosion sound effect ''' #TIY 14.7
+        enemy_explosion = self.sound('sounds/explosion_sound.wav')
+        enemy_explosion.play()
 
     def start_new_level(self):
         '''start new level'''
@@ -141,8 +150,14 @@ class Alien_Invasion:
                 sys.exit()
             if event.key == pygame.K_SPACE:
                 self._fire_bullets() 
+                self._firing_sound()
             if event.key == pygame.K_p:
                 self._start_game()
+
+    def _firing_sound(self):
+        '''creates a firing sound effect''' #TIY 14.7
+        gun_sound = self.sound('sounds/shooting_sound.wav')
+        gun_sound.play()
 
     def _check_keyup_events(self,event):
         '''a helper method to check for key releases'''
