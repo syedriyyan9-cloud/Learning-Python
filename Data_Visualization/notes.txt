@@ -1,0 +1,19 @@
+pyplot module is used to draw charts and graphs
+subplots is used to plot many lines onto a sign chart
+fig is used to contain the entire landscape of the program
+ax is used to store only one plot (line on chart)
+.plot() method is used to actually plot the line onto a chart
+.show() method is used to display the plotted line on a chart
+
+.plot() takes linewidth param which adjusts the thickness of the line
+.set_title() method is used to set the title for the chart or graph
+.set_xlabel() and .set_ylabel is used to label the x and y axis
+fontsize parameters in set methods is used to adjust the size of the fontsize
+.tick_params() method is used to adjust the size of marks on x and y axis
+.tick_params() also takes param of labelsize which adjusts the size of ticks
+
+When you give plot() a sequence of numbers, it assumes the first data
+point corresponds to an x-coordinate value of 0, but our first point corre­
+sponds to an x-value of 1. We can override the default behavior by giving
+plot() the input and output values used to calculate the squares.
+the first param in plot method corresponds to x-axis, and second param is y-axis 
