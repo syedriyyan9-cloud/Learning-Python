@@ -59,3 +59,17 @@ The first argument is a filename for the plot image, which will be saved
 in the same directory as scatter_squares.py. The second argument trims extra
 whitespace from the plot. If you want the extra whitespace around the plot,
 just omit this argument.
+
+To modify the axes, we use the ax.get_xaxis() and ax.get_yaxis() methods to
+set the visibility of each axis to False.
+.set_visible() method is used to display visibility of axis, if False is
+passed as an argument then the axis is not displayed only the graph.
+
+When creating the plot, you can pass a figsize argument to set the size
+of the figure. The figsize parameter takes a tuple, which tells Matplotlib the
+dimensions of the plotting window in inches.
+Matplotlib assumes that your screen resolution is 100 pixels per inch
+
+if you know your system’s resolution, pass plt.subplots() the
+resolution using the dpi parameter to set a plot size that makes effective use
+of the space available on your screen
