@@ -6,7 +6,7 @@ while True:
     # TIY 15-3
     rw = RandomWalk(5_000)
     rw.fill_walk()
-    fig, ax = plt.subplots(figsize=(10,6))
+    fig, ax = plt.subplots(figsize=(10,6),dpi = 100)
     ax.plot(rw.x_values,rw.y_values,linewidth = 5)
     points = range(rw.n_points)
     # ax.scatter(rw.x_values, rw.y_values,c=points,s=1,cmap=plt.cm.Reds,edgecolors="none")
