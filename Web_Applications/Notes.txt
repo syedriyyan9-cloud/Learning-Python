@@ -1,0 +1,21 @@
+- Virtual Environment is a space on your computer where you can install and isolate packages from other python packages.
+- To activate V.E write name of the virtual environment\Scripts\activate in CMD
+- To deactivate venv write deactivate in CMD
+- Keep in mind that Django will be available only when the virtual environment is active.
+- To create a new project in django use the following command: django-admin startproject project_name . (dot)
+- Don’t forget this dot, or you might run into some configuration issues when you deploy the app.
+- The settings.py file controls how Django interacts with your system and manages your project.
+- The urls.py file tells Django which pages to build in response to browser requests.
+- The wsgi.py file helps Django serve the files it creates. The filename is an acronym for web server gateway interface.
+- Django stores most of the information for a project in a database, so next we need to create a database that Django can work with.
+- To create a database we need to run the following command: py manage.py migrate
+- Any time we modify a database, we say we’re migrating the database.
+- Issuing the migrate command for the first time tells Django to make sure the database matches the current state of the project.
+- Django reports that it will prepare the database to store information it needs to handle administrative and authentication tasks.
+- SQLite is a database that runs off a single file; 
+- it’s ideal for writing simple apps because you won’t have to pay much attention to managing the database.
+- When we run the command: py manage.py runserver; django first check if the project is set up properly, then it reports the version of django in use and lastly it gives a url on which project is being served.
+- Usually the project runs on localhost port 8000.
+- Localhost refers to a server that only porcesses requests on your system, no one else has access to it.
+- if django fails to run on port 8000 then change the port by writing, py manage.py runserver 8001; now the project is served on port 8001.
+- 
