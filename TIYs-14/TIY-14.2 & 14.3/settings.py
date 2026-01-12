@@ -3,6 +3,7 @@ class Setting:
     
     def __init__(self):
         '''create game settings'''
+        self.color_change = (0,0,0)
         self.bg_color_white = (255,255,255)
 
         self.rectangle_speed = 1

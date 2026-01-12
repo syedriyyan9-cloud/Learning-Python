@@ -46,6 +46,7 @@ class Game:
 
     def update_screen(self):
         '''update screen for events'''
+        # self.change_color()
         self.screen.fill(self.setting.bg_color_white)
         self.rectangle.draw()
         self.character.draw()
@@ -67,13 +68,13 @@ class Game:
     def _check_down_events(self, event):
         '''check for key presses'''
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_UP:
                 self.character.move_up = True
-            if event.key == pygame.K_s:
+            if event.key == pygame.K_DOWN:
                 self.character.move_down = True
-            if event.key == pygame.K_a:
+            if event.key == pygame.K_LEFT:
                 self.character.move_left = True
-            if event.key == pygame.K_d:
+            if event.key == pygame.K_RIGHT:
                 self.character.move_right = True
             if event.key == pygame.K_q:
                 sys.exit()
@@ -111,6 +112,7 @@ class Game:
             self._check_collision()
             self._check_missed_bullets()
 
+
     def _check_collision(self):
         '''check for collisions'''
         collision = pygame.sprite.spritecollide(self.rectangle,self.bullet,0)
@@ -137,13 +139,13 @@ class Game:
     def _check_up_events(self, event):
         '''check for key releases'''
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_UP:
                 self.character.move_up = False
-            if event.key == pygame.K_s:
+            if event.key == pygame.K_DOWN:
                 self.character.move_down = False
-            if event.key == pygame.K_a:
+            if event.key == pygame.K_LEFT:
                 self.character.move_left = False
-            if event.key == pygame.K_d:
+            if event.key == pygame.K_RIGHT:
                 self.character.move_right = False
 
     def hide_mouse(self):

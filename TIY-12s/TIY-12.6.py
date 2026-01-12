@@ -69,6 +69,7 @@ class Game:
         self.bullets.add(new_bullet)
 
     def _delete_fired_bullets(self):
+        '''a method to delete the bullets that went out of the screen'''
         for bullet in self.bullets.copy():
             if bullet.rect.right > self.screen_width:
                 self.bullets.remove(bullet)

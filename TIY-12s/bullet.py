@@ -14,7 +14,7 @@ class Bullet(Sprite):
 
         self.rect = pygame.Rect(0,0,self.setting.bullet_width,
                                 self.setting.bullet_height)
-        self.rect.midtop = game.character.rect.midtop
+        self.rect.center = game.character.rect.center
         self.x = float(self.rect.x)
 
     def update(self):

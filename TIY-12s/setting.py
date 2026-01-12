@@ -15,3 +15,6 @@ class Setting:
         self.bullet_width = 5
         self.bullet_height = 5
         self.bullet_speed = 7
+
+        self.enemy_width = 50
+        self.enemy_height = 50
