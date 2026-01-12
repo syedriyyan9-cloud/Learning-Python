@@ -6,6 +6,20 @@ class Topics(models.Model):
     text = models.TextField(max_length = 200)
     date = models.DateTimeField(auto_now_add = True)
 
-def __str__(self):
-    """return the string representation of the model"""
-    return self.text
+    def __str__(self):
+        """return the string representation of the model"""
+        return self.text
+
+class Entry(models.Model):
+    """Something specific learned about a topic"""
+    topic = models.ForeignKey(Topics, on_delete = models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add = True)
+
+    class Meta:
+        """Manage extra information in entry model"""
+        verbose_name_plural = "Entries"
+
+    def __str__(self):
+        """return the string representation of the model"""
+        return f"{self.text[:50]}..."

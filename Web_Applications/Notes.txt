@@ -27,4 +27,15 @@
 - This migration will create a table for the model Topic in the database.
 - To modify the database use the command: python manage.py migrate
 - Whenever we want to modify the data that Learning Log manages, we’ll follow these three steps: modify models.py, call makemigrations on learning_logs, and tell Django to migrate the project.
+- When we run the command: python manage.py createsuperuser, we are essentially creating an admin for our web application
+- The code admin.site.register() tells Django to manage our model through the admin site
+- A foreign key is a database term; it’s a reference to another record in the database.
+- The on_delete=models.CASCADE argument tells Django that when a topic is deleted, all the entries associated with that topic should be deleted as well. This is known as a cascading delete.
+- We nest the Meta class inside our Entry class. 
+- The Meta class holds extra information for managing a model; here, it allows us to set a special attribute telling Django to use Entries when it needs to refer to more than one entry. Without this, Django would refer to multiple entries as Entrys.
+- The command: python manage.py shell, run in an active virtual environment, launches a Python interpreter that you can use to explore the data stored in your project’s database.
+- We then use the method Topic.objects.all() to get all the instances of the model Topic; the list that’s returned is called a queryset.
+- We can loop over a queryset just as we’d loop over a list.
+- If you know the ID of a particular object, you can use the method Topic.objects.get() to retrieve that object and examine any attribute the object has. 
+- To get data through a foreign key relationship, you use the lowercase name of the related model followed by an underscore and the word 'set'
 - 
