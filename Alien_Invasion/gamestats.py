@@ -5,9 +5,14 @@ class GameStats:
         '''create stats for the game here!!'''
         self.screen = game.screen
         self.setting = game.setting
+        self.game = game
         self.reset_stats()
         self.game_active = False
+        self.score = 0
+        self.high_score = self.game._retrive_highscore()
+        self.level = 1
 
     def reset_stats(self):
         '''reset to default values'''
         self.ships_left = self.setting.ship_limit
+        self.score = 0

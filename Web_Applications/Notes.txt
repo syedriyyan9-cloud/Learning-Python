@@ -1,0 +1,30 @@
+- Virtual Environment is a space on your computer where you can install and isolate packages from other python packages.
+- To activate V.E write name of the virtual environment\Scripts\activate in CMD
+- To deactivate venv write deactivate in CMD
+- Keep in mind that Django will be available only when the virtual environment is active.
+- To create a new project in django use the following command: django-admin startproject project_name . (dot)
+- Don’t forget this dot, or you might run into some configuration issues when you deploy the app.
+- The settings.py file controls how Django interacts with your system and manages your project.
+- The urls.py file tells Django which pages to build in response to browser requests.
+- The wsgi.py file helps Django serve the files it creates. The filename is an acronym for web server gateway interface.
+- Django stores most of the information for a project in a database, so next we need to create a database that Django can work with.
+- To create a database we need to run the following command: py manage.py migrate
+- Any time we modify a database, we say we’re migrating the database.
+- Issuing the migrate command for the first time tells Django to make sure the database matches the current state of the project.
+- Django reports that it will prepare the database to store information it needs to handle administrative and authentication tasks.
+- SQLite is a database that runs off a single file; 
+- it’s ideal for writing simple apps because you won’t have to pay much attention to managing the database.
+- When we run the command: py manage.py runserver; django first check if the project is set up properly, then it reports the version of django in use and lastly it gives a url on which project is being served.
+- Usually the project runs on localhost port 8000.
+- Localhost refers to a server that only porcesses requests on your system, no one else has access to it.
+- if django fails to run on port 8000 then change the port by writing, py manage.py runserver 8001; now the project is served on port 8001.
+- Use the command python manage.py startapp app_name to create a django app.
+- A model tells Django how to work with the data that will be stored in the app. Code-wise, a model is just a class; it has attributes and methods, just like every class we’ve discussed.
+- The text attribute is a CharField—a piece of data that’s made up of characters, or text. You use CharField when you want to store a small amount of text, such as a name, a title, or a city. When we define a CharField attribute, we have to tell Django how much space it should reserve in the database.
+- The date_added attribute is a DateTimeField—a piece of data that will record a date and time. We pass the argument auto_now_add=True, which tells Django to automatically set this attribute to the current date and time whenever the user creates a new topic.
+- We tell Django which attribute to use by default when it displays information about a topic. Django calls a __str__() method to display a simple representation of a model. Here we’ve written a __str__() method that returns the string stored in the text attribute.
+- The command: python manage.py makemigrations app_name tells Django to figure out how to modify the database so it can store the data associated with any new models we’ve defined.
+- This migration will create a table for the model Topic in the database.
+- To modify the database use the command: python manage.py migrate
+- Whenever we want to modify the data that Learning Log manages, we’ll follow these three steps: modify models.py, call makemigrations on learning_logs, and tell Django to migrate the project.
+- 

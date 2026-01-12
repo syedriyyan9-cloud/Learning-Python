@@ -1,0 +1,11 @@
+from django.db import models
+
+# Create your models here.
+class Topics(models.Model):
+    """A topic the user is learning about."""
+    text = models.TextField(max_length = 200)
+    date = models.DateTimeField(auto_now_add = True)
+
+def __str__(self):
+    """return the string representation of the model"""
+    return self.text

@@ -1,0 +1,75 @@
+pyplot module is used to draw charts and graphs
+subplots is used to plot many lines onto a sign chart
+fig is used to contain the entire landscape of the program
+ax is used to store only one plot (line on chart)
+.plot() method is used to actually plot the line onto a chart
+.show() method is used to display the plotted line on a chart
+
+.plot() takes linewidth param which adjusts the thickness of the line
+.set_title() method is used to set the title for the chart or graph
+.set_xlabel() and .set_ylabel is used to label the x and y axis
+fontsize parameters in set methods is used to adjust the size of the fontsize
+.tick_params() method is used to adjust the size of marks on x and y axis
+.tick_params() also takes param of labelsize which adjusts the size of ticks
+
+When you give plot() a sequence of numbers, it assumes the first data
+point corresponds to an x-coordinate value of 0, but our first point corre­
+sponds to an x-value of 1. We can override the default behavior by giving
+plot() the input and output values used to calculate the squares.
+the first param in plot method corresponds to x-axis, and second param is y-axis 
+
+plt.style.available is used to provide a list of predefined colors for graphs.
+
+plt.style.use('predefined_color'). this method is used to color the graph and 
+plot of the graph, the param is a string that takes in an argument from the list
+that we get from plt.style.available
+
+.scatter(x,y) method is used to plot points onto a graph, it takes two param 
+first param is on x-axis and second param is on y-axis. 
+we can use s=200 as a param to represents the size of the point on the graph
+
+When these lists are passed to scatter(), Matplotlib reads one value from each 
+list as it plots each point. The points to be plotted are (1, 1), (2, 4), (3, 9)
+, (4, 16), and (5, 25)
+For large data set use a smaller point size.
+
+we use the axis() method to specify the range of each axis. The axis() method 
+requires four values: the minimum and maximum values for the x-axis and the 
+y-axis.
+
+To change the color of the points, pass c to scatter() with the name of a
+color to use in quotation marks.
+
+You can also define custom colors using the RGB color model. To define
+a color, pass the c argument a tuple with three decimal values (one each
+for red, green, and blue in that order), using values between 0 and 1.
+
+A colormap is a series of colors in a gradient that moves from a starting to
+an ending color. You use colormaps in visualizations to emphasize a pattern
+in the data. For example, you might make low values a light color and high
+values a darker color.
+to use colormap code is used like this: ax.scatter(cmap=plt.cm.Blues) param
+
+If you want your program to automatically save the plot to a file, you can
+replace the call to plt.show() with a call to plt.savefig()
+
+code: plt.savefig('squares_plot.png', bbox_inches='tight')
+
+The first argument is a filename for the plot image, which will be saved
+in the same directory as scatter_squares.py. The second argument trims extra
+whitespace from the plot. If you want the extra whitespace around the plot,
+just omit this argument.
+
+To modify the axes, we use the ax.get_xaxis() and ax.get_yaxis() methods to
+set the visibility of each axis to False.
+.set_visible() method is used to display visibility of axis, if False is
+passed as an argument then the axis is not displayed only the graph.
+
+When creating the plot, you can pass a figsize argument to set the size
+of the figure. The figsize parameter takes a tuple, which tells Matplotlib the
+dimensions of the plotting window in inches.
+Matplotlib assumes that your screen resolution is 100 pixels per inch
+
+if you know your system’s resolution, pass plt.subplots() the
+resolution using the dpi parameter to set a plot size that makes effective use
+of the space available on your screen
