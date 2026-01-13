@@ -38,4 +38,29 @@
 - We can loop over a queryset just as we’d loop over a list.
 - If you know the ID of a particular object, you can use the method Topic.objects.get() to retrieve that object and examine any attribute the object has. 
 - To get data through a foreign key relationship, you use the lowercase name of the related model followed by an underscore and the word 'set'
+- Making web pages with Django consists of three stages: defining URLs,writing views, and writing templates. You can do these in any order, but in this project we’ll always start by defining the URL pattern. 
+- A URL pattern describes the way the URL is laid out. 
+- It also tells Django what to look for when matching a browser request with a site URL so it knows which page to return.
+- Each URL then maps to a particular view—the view function retrieves and processes the data needed for that page. 
+- The view function often renders the page using a template, which contains the overall structure of the page.
+- To make it clear which urls.py we’re working in, we add a docstring at the beginning of the file. We then import the path function, which is needed when mapping URLs to views. 
+- We also import the views module; the dot tells Python to import the views.py module from the same directory as the current urls.py module. 
+- The variable app_name helps Django distinguish this urls.py file from files of the same name in other apps within the project. 
+- The variable urlpatterns in this module is a list of individual pages that can be requested from the learning_logs app.
+- The actual URL pattern is a call to the path() function, which takes three arguments. 
+- The first argument is a string that helps Django route the current request properly. 
+- Django receives the requested URL and tries to route the request to a view. 
+- It does this by searching all the URL patterns we’ve defined to find one that matches the current request. 
+- Django ignores the base URL for the project (http://localhost:8000/), so the empty string ('') matches the base URL. 
+- Any other URL won’t match this pattern, and Django will return an error page if the URL requested doesn’t match any
+existing URL patterns.
+- The second argument in path() specifies which function to call in views.py. 
+- When a requested URL matches the pattern we’re defining, Django calls the index() function from views.py (we’ll write this view function in the next section). 
+- The third argument provides the name index for this URL pattern so we can refer to it in other code sections. 
+- Whenever we want to provide a link to the home page, we’ll use this name instead of writing out a URL.
+- A view function takes in information from a request (or takes in a request object), prepares the data needed to generate a page, and then sends the data back to the browser, often by using a template that defines what the page will look like.
+- The template defines what the page should look like, and Django fills in the relevant data each time the page is requested. A template allows you to access any data provided by the view.
+- Inside the learning_logs folder, make a new folder called templates. 
+- Inside the templates folder, make another folder called learning_logs. 
+- This might seem a little redundant (we have a folder named learning_logs inside a folder named templates inside a folder named learning_logs), but it sets up a structure that Django can interpret unambiguously, even in the context of a large project containing many individual apps.
 - 
