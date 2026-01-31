@@ -2,7 +2,6 @@
 {% block content %}
 
 <ul>
-    <p><a href="{% url 'blogs:add_blog' %}">Add new blog</a></p>
     {% for blog in blogs %}
     <li>
         <p>{{blog.date_added}}</p>
