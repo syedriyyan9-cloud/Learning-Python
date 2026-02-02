@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# my settings
+LOGIN_URL = 'users:login'
 
 # Application definition
 
