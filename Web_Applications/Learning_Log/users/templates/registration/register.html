@@ -5,7 +5,7 @@
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Register</button>
-    <input type="text" name="next" value="{% url 'learning_logs:index' %}">
+    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
 </form>
 
 {% endblock content %}

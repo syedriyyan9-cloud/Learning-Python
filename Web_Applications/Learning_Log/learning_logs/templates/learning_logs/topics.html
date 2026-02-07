@@ -10,6 +10,7 @@
             <li> <a href="{% url 'learning_logs:new_topic' %}">Add Topic</a> </li>        
             {% empty %}
             <li> The list is empty </li>
+            <li><a href="{% url 'learning_logs:new_topic' %}">Add Topic</a></li>
         {% endfor %}
     </ul>
 {% endblock content %}

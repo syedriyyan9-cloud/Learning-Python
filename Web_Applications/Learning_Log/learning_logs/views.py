@@ -24,11 +24,16 @@ def topics(request):
 def topic(request, topic_id):
     """show a single topic and all its entries"""
     topic = Topics.objects.get(id=topic_id)
-    if topic.owner != request.user:
-        raise Http404
+    check_topic_user(request, topic)
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries':entries}
     return render(request, 'learning_logs/topic.html', context)
+
+# TIY 19.3
+def check_topic_user(request,topic):
+    """Check if the current user is the owner"""
+    if topic.owner != request.user:
+        raise Http404
 
 @login_required
 def new_topic(request):
@@ -50,6 +55,8 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """add new entires"""
     topic = Topics.objects.get(id = topic_id)
+    # TIY 19.4
+    check_topic_user(request, topic)
     if request.method != 'POST':
         form = EntryForm()
     else:
@@ -67,8 +74,7 @@ def edit_entry(request, entry_id):
     """Edit existing entires"""
     entry = Entry.objects.get(id = entry_id)
     topic = entry.topic
-    if topic.owner != request.owner:
-        raise Http404
+    check_topic_user(request, topic)
     if request.method != 'POST':
         form = EntryForm(instance=entry)
     else:
